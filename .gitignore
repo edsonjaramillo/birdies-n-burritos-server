@@ -6,4 +6,4 @@ yarn-error.log
 
 docker-compose.yml
 
-prisma/development.prisma
+prisma
