@@ -1,0 +1,51 @@
+{
+  "name": "birdiesnburritos_server",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "author": "Edson Jaramillo",
+  "license": "MIT",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development ts-node-dev --clear -r tsconfig-paths/register src/index.ts",
+    "build": "rm -rf dist && tsc && tsc-alias -p tsconfig.json",
+    "start": "cross-env NODE_ENV=development node dist/index.js",
+    "start:prod": "cross-env NODE_ENV=production node dist/index.js",
+    "push:dev": "npx prisma db push --schema ./prisma/development.prisma",
+    "push:prod": "npx prisma db push --schema ./prisma/production.prisma",
+    "migrate:dev": "npx prisma migrate dev --schema ./prisma/development.prisma",
+    "migrate:prod": "npx prisma migrate dev --schema ./prisma/production.prisma",
+    "studio:dev": "npx prisma studio --schema ./prisma/development.prisma",
+    "studio:prod": "npx prisma studio --schema ./prisma/production.prisma",
+    "generate:dev": "npx prisma generate --schema ./prisma/development.prisma",
+    "generate:prod": "npx prisma generate --schema ./prisma/production.prisma",
+    "clean": "rm -rf dist",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "@prisma/client": "^4.14.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.1.1",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "helmet": "^7.0.0",
+    "ioredis": "^5.3.2",
+    "jsonwebtoken": "^9.0.0",
+    "zod": "^3.21.4"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "^1.4.3",
+    "@types/cors": "^2.8.13",
+    "@types/crypto-js": "^4.1.1",
+    "@types/express": "^4.17.17",
+    "@types/jsonwebtoken": "^9.0.2",
+    "@types/node": "^20.2.5",
+    "cross-env": "^7.0.3",
+    "prettier": "^2.8.8",
+    "prisma": "^4.14.1",
+    "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0",
+    "tsc-alias": "^1.8.6",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.0.4"
+  }
+}
