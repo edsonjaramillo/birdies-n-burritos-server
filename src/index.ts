@@ -1,10 +1,11 @@
-import { env } from '@/env';
-import express from 'express';
 import cors from 'cors';
+import express from 'express';
 import helmet from 'helmet';
+
+import { env } from '@/env';
+import cookieParser from '@/middleware/cookieParser';
 import accountRouter from '@/routes/account';
 import authRouter from '@/routes/auth';
-import cookieParser from './middleware/cookieParser';
 
 const { HOST, PORT } = env;
 

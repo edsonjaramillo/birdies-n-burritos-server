@@ -1,7 +1,8 @@
 import express from 'express';
+
+import { login } from '@/controllers/auth';
 import { zodValidate } from '@/middleware/zodValidate';
 import { loginValidation } from '@/validators/auth';
-import { login } from '@/controllers/auth';
 
 const router = express.Router();
 
