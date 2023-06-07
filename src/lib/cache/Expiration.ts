@@ -16,4 +16,12 @@ export class Expiration {
   static getStdEX() {
     return this.getHours(2);
   }
+
+  static accessTokenEX() {
+    return this.getMinutes(15);
+  }
+
+  static refreshTokenEX() {
+    return this.getDays(14);
+  }
 }
