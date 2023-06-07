@@ -1,5 +1,13 @@
 import { env } from '@/env';
-import { CookieOptions } from 'express';
+// import { CookieOptions } from 'express';
+
+type CookieOptions = {
+  HttpOnly?: boolean;
+  SameSite?: 'strict' | 'lax' | 'none';
+  'Max-Age'?: number;
+  domain?: string;
+  path?: string;
+};
 
 export class Cookies {
   static httpCookie(cookieName: string, cookieValue: string, expiration: number): string {
@@ -7,28 +15,15 @@ export class Cookies {
     const domain = NODE_ENV === 'production' ? 'https://www.example.com' : 'localhost';
 
     const cookieOpts: CookieOptions = {
-      httpOnly: true,
-      sameSite: 'strict',
+      HttpOnly: true,
+      SameSite: 'strict',
       domain,
       path: '/',
-      maxAge: expiration,
+      'Max-Age': expiration,
     };
 
     let cookieString = `${encodeURIComponent(cookieName)}=${encodeURIComponent(cookieValue)}`;
     Object.entries(cookieOpts).forEach(([key, value]) => {
-      switch (key) {
-        case 'httpOnly':
-          key = 'HttpOnly';
-          break;
-        case 'sameSite':
-          key = 'SameSite';
-          break;
-        case 'maxAge':
-          key = 'Max-Age';
-          break;
-        default:
-          break;
-      }
       cookieString += `; ${key}=${value}`;
     });
 
