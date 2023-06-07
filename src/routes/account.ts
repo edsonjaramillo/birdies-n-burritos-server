@@ -6,7 +6,7 @@ import jwtVerify from '@/middleware/jwtVerify';
 
 const router = express.Router();
 
-router.route('/get-account').post(jwtVerify(), zodValidate(getAccountValidator), accountsController.getAccount);
+router.route('/get-account').post(jwtVerify, zodValidate(getAccountValidator), accountsController.getAccount);
 router.route('/create-account').post(zodValidate(createAccountValidator), accountsController.createAccount);
 
 export default router;
