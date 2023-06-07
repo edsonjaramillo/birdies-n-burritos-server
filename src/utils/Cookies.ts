@@ -22,7 +22,7 @@ export class Cookies {
       'Max-Age': expiration,
     };
 
-    let cookieString = `${encodeURIComponent(cookieName)}=${encodeURIComponent(cookieValue)}`;
+    let cookieString = `${cookieName}=${cookieValue}`;
     Object.entries(cookieOpts).forEach(([key, value]) => {
       cookieString += `; ${key}=${value}`;
     });
