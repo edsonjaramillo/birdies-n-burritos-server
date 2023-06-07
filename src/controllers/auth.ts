@@ -28,16 +28,14 @@ export const login = async (req: Request, res: Response) => {
     redis = new RedisClient();
     redis.setToPipeline(CacheKeys.accountKey(account.email), account, Expiration.getStdEX());
 
-    // Set tokens to httpOnly cookies
-
-    // Sign tokens
-    const { JWT_ACCESS_SECRET, JWT_REFRESH_SECRET } = env;
-    const accessToken = JWT.sign(account, JWT_ACCESS_SECRET);
-    const refreshToken = JWT.sign(account, JWT_REFRESH_SECRET);
-
     // Get expirations for cookies
     const accessTokenEX = Expiration.accessTokenEX();
     const refreshTokenEX = Expiration.refreshTokenEX();
+
+    // Sign tokens
+    const { JWT_ACCESS_SECRET, JWT_REFRESH_SECRET } = env;
+    const accessToken = JWT.sign(account, JWT_ACCESS_SECRET, accessTokenEX);
+    const refreshToken = JWT.sign(account, JWT_REFRESH_SECRET, refreshTokenEX);
 
     // Set cookies
     const accessTokenCookie = Cookies.httpCookie('access_token', accessToken, accessTokenEX);
