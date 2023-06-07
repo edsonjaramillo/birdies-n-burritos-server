@@ -39,7 +39,7 @@ async function login(req: Request, res: Response) {
     const refreshToken = JWT.sign(account, JWT_REFRESH_SECRET, refreshTokenEX);
 
     // Set cookies
-    const accessTokenCookie = Cookies.httpCookie('access_token', accessToken, accessTokenEX);
+    const accessTokenCookie = Cookies.httpCookie('accessToken', accessToken, accessTokenEX);
     const refreshTokenCookie = Cookies.httpCookie('refresh_token', refreshToken, refreshTokenEX);
     res.setHeader('Set-Cookie', [accessTokenCookie, refreshTokenCookie]);
 
@@ -52,7 +52,7 @@ async function login(req: Request, res: Response) {
 }
 
 async function logout(req: Request, res: Response) {
-  const clearAccessToken = Cookies.httpCookie('access_token', '', 0);
+  const clearAccessToken = Cookies.httpCookie('accessToken', '', 0);
   const clearRefreshToken = Cookies.httpCookie('refresh_token', '', 0);
 
   res.setHeader('Set-Cookie', [clearAccessToken, clearRefreshToken]);
