@@ -36,4 +36,6 @@ export default async function jwtVerify(req: Request, res: Response, next: NextF
     res.setHeader('Set-Cookie', [accessTokenCookie, refreshTokenCookie]);
     return next();
   }
+
+  res.status(401).json(API.res(false, 'error', null, 'Invalid tokens'));
 }
