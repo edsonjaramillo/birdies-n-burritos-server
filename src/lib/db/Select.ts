@@ -1,10 +1,5 @@
 import { Prisma } from '@prisma/client';
 
-export const sessionSelect: Prisma.SessionSelect = {
-  id: true,
-  expiresAt: true,
-};
-
 export const accountSelect: Prisma.AccountSelect = {
   id: true,
   firstName: true,
