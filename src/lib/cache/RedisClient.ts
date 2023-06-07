@@ -1,5 +1,6 @@
 import { Redis, ChainableCommander } from 'ioredis';
 import { env } from '@/env';
+import type { AnyObj } from '@/types';
 
 export class RedisClient {
   private redis: Redis;
@@ -25,22 +26,18 @@ export class RedisClient {
     if (this.isDev) {
       console.log(`SET ${key} with EX: ${EX}`);
     }
-    return await this.redis.set(key, value);
+    await this.redis.set(key, value);
   }
 
-  setToPipeline(key: string, value: any, EX: number) {
+  setToPipeline(key: string, value: AnyObj, expiration: number) {
     if (this.isDev) {
-      console.log(`SET ${key} to pipeline with EX: ${EX}`);
+      console.log(`SET ${key} to pipeline with EX: ${expiration}`);
     }
-    return this.pipeline.set(key, JSON.stringify(value), 'EX', EX);
-  }
-
-  async execPipeline() {
-    return await this.pipeline.exec();
+    this.pipeline.set(key, JSON.stringify(value), 'EX', expiration);
   }
 
   async quit() {
-    await this.execPipeline();
+    await this.pipeline.exec();
     await this.redis.quit();
   }
 }
