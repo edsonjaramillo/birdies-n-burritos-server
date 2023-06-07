@@ -1,5 +1,6 @@
-import { AnyZodObject } from 'zod';
 import { Response, Request, NextFunction } from 'express';
+import { AnyZodObject } from 'zod';
+
 import { API } from '@/lib/API';
 
 export function zodValidate(schema: AnyZodObject) {

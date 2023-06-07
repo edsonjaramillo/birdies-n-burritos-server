@@ -1,5 +1,4 @@
 import { env } from '@/env';
-// import { CookieOptions } from 'express';
 
 type CookieOptions = {
   HttpOnly?: boolean;

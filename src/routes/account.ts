@@ -1,8 +1,9 @@
 import express from 'express';
+
 import accountsController from '@/controllers/account';
-import { getAccountValidator, createAccountValidator } from '@/validators/account';
-import { zodValidate } from '@/middleware/zodValidate';
 import jwtVerify from '@/middleware/jwtVerify';
+import { zodValidate } from '@/middleware/zodValidate';
+import { getAccountValidator, createAccountValidator } from '@/validators/account';
 
 const router = express.Router();
 

@@ -2,5 +2,8 @@
   "printWidth": 120,
   "singleQuote": true,
   "semi": true,
-  "bracketSameLine": true
+  "bracketSameLine": true,
+  "importOrder": ["^(?!@\\/|\\.)", "^@\\/", "^\\."],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": false
 }

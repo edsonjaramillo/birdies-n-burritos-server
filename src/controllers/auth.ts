@@ -1,14 +1,15 @@
-import { prisma } from '@/lib/db/prisma';
-import { RedisClient } from '@/lib/cache/RedisClient';
 import { Request, Response } from 'express';
+
+import { env } from '@/env';
 import { API } from '@/lib/API';
-import { Security } from '@/utils/Security';
-import { accountAuthSelect, accountSelect } from '@/lib/db/Select';
 import { CacheKeys } from '@/lib/cache/CacheKeys';
 import { Expiration } from '@/lib/cache/Expiration';
-import { env } from '@/env';
+import { RedisClient } from '@/lib/cache/RedisClient';
+import { accountAuthSelect, accountSelect } from '@/lib/db/Select';
+import { prisma } from '@/lib/db/prisma';
 import { Cookies } from '@/utils/Cookies';
 import { JWT } from '@/utils/JWT';
+import { Security } from '@/utils/Security';
 
 export const login = async (req: Request, res: Response) => {
   let redis;

@@ -1,11 +1,12 @@
 import { Request, Response } from 'express';
-import { RedisClient } from '@/lib/cache/RedisClient';
-import { CacheKeys } from '@/lib/cache/CacheKeys';
+
 import { API } from '@/lib/API';
+import { CacheKeys } from '@/lib/cache/CacheKeys';
 import { Expiration } from '@/lib/cache/Expiration';
+import { RedisClient } from '@/lib/cache/RedisClient';
+import { accountSelect } from '@/lib/db/Select';
 import { prisma } from '@/lib/db/prisma';
 import { Security } from '@/utils/Security';
-import { accountSelect } from '@/lib/db/Select';
 
 async function getAccount(req: Request, res: Response) {
   let redis;

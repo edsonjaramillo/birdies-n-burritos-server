@@ -1,10 +1,11 @@
 import { Response, Request, NextFunction } from 'express';
-import { API } from '@/lib/API';
-import { JWT } from '@/utils/JWT';
+
 import { env } from '@/env';
+import { API } from '@/lib/API';
 import { Expiration } from '@/lib/cache/Expiration';
 import { prisma } from '@/lib/db/prisma';
 import { Cookies } from '@/utils/Cookies';
+import { JWT } from '@/utils/JWT';
 
 export default async function jwtVerify(req: Request, res: Response, next: NextFunction) {
   const { access_token, refresh_token } = req.cookies;

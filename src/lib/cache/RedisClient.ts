@@ -1,4 +1,5 @@
 import { Redis, ChainableCommander } from 'ioredis';
+
 import { env } from '@/env';
 import type { AnyObj } from '@/types';
 
