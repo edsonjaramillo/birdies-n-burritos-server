@@ -11,7 +11,7 @@ import { Cookies } from '@/utils/Cookies';
 import { JWT } from '@/utils/JWT';
 import { Security } from '@/utils/Security';
 
-export const login = async (req: Request, res: Response) => {
+async function login(req: Request, res: Response) {
   let redis;
   try {
     const { email, password } = req.body;
@@ -49,8 +49,14 @@ export const login = async (req: Request, res: Response) => {
   } finally {
     await redis?.quit();
   }
-};
+}
 
-export default {
-  login,
-};
+async function logout(req: Request, res: Response) {
+  const clearAccessToken = Cookies.httpCookie('access_token', '', 0);
+  const clearRefreshToken = Cookies.httpCookie('refresh_token', '', 0);
+
+  res.setHeader('Set-Cookie', [clearAccessToken, clearRefreshToken]);
+  return res.json(API.res(true, 'success', null, 'Logout successful.'));
+}
+
+export default { login, logout };
